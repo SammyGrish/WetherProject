@@ -25,7 +25,7 @@ SECRET_KEY = '$a*%$36tmruhb90(v*t^msydlpfi5^c8zrwhh6!!49dt37=^4('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.codenvy.io']
+ALLOWED_HOSTS = ['.vfs.cloud9.us-east-1.amazonaws.com']
 
 
 # Application definition
