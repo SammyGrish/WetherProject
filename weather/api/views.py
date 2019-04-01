@@ -8,7 +8,7 @@ class TemperatureList(generics.ListAPIView):
     queryset = Temperature.objects.all()
     serializer_class = TemperatureSerializer
     
-class TemperatureDetail(generics.RetrieveAPIView):
-    querryset = Temperature.objects.all()
+class TemperatureDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Temperature.objects.all()
     serializer_class = TemperatureSerializer
 # Create your views here.
