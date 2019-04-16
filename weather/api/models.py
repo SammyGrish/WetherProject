@@ -8,6 +8,12 @@ class Temperature(models.Model):
     
     def __str__(self):
         return str(self.celesius)
+    from django.db import models
+    @property
+    def fahrenheit(self):
+        "Returns the temperature in fahrenheit"
+        return '%f' % ((self.celsius * 9/5) +32)
+
     
 class Humitidty(models.Model):
     pass
