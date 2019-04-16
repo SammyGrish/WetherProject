@@ -36,8 +36,8 @@
     <section id="intro" class="intro overlay">
         <div class="intro slogan">
             <div class="offset-md-3 col-md-6 slogan-text">
-              <h1>Welcome the wether station that will never be popularized because of how manny other weather stations are out there</h1>
-              <p>Bringing you current indoor weather conditions(which is creepy that we know how the inside of your house feels) from a raspberry pi.</p>
+              <h1>Welcome to Ron Burgundy Weather Station</h1>
+              <p>Bringing you temperatures from places from a raspberry pi.</p>
             </div>
         </div>
     </section>
@@ -47,19 +47,24 @@
             <div class="col-md-4"> <!-- block 1 (left) -->
                 <div class="weather-block rounded">
                     <p class="weather-heading">Temperature</p>
-                    <p class="weather-item">111101001&deg in binary</p>
+                    <p class="weather-item">{{ temp.farenheit|floatformat:1 }}&deg;F <span class="weather-sub">{{ temp.celsius|floatformat:1 }}&deg;C</span></p>
+                    <p style="font-size:small">Last updated: {{ temp.recorded_at }}</p>
+                    <p style="font-size:small">{{ tcount }} readings since {{ tfirst }}</p>
+</div>
+
+
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 2 (middle) -->
                 <div class="weather-block rounded">
                     <p class="weather-heading">Humidity</p>
-                    <p class="weather-item">180%13 which is 11</p>
+                    <p class="weather-item">data.humidity</p>
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 3 (right) -->
                 <div class="weather-block rounded">
                     <p class="weather-heading">Time</p>
-                    <p class="weather-item">23:59:59 a.m.</p>
+                    <p class="weather-item">data.time</p>
                 </div>
             </div>
         </div>
@@ -69,12 +74,12 @@
         <div class="row"> <!-- this horizontal row will hold our weather display -->
             <div class="col-md-4"> <!-- block 1 (left) -->
                 <div class="weather-block rounded">
-                    [10 day temperature graph(viva la france)]
+                    [some number stuff]
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 2 (middle) -->
                 <div class="weather-block rounded">
-                    [10 day humidity graph]
+                    [humidity]
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 3 (right) -->
@@ -116,7 +121,7 @@
                 <i class="fas fa-arrow-left fa-2x"></i>
             </div>
             <div class="col-md-2 user">
-                <i class="fas fa-user"></i><br>Usir(haha get it you sir)
+                <i class="fas fa-user"></i><br>you probably
             </div>
         </div>
     </div>
@@ -134,3 +139,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
+
