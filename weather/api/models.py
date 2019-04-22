@@ -15,5 +15,15 @@ class Temperature(models.Model):
         return '%f' % ((self.celesius * 9/5) +32)
 
     
-class Humitidty(models.Model):
-    pass
+class Humidity(models.Model):
+    RH = models.FloatField(default=0.0)
+    change = models.FloatField(default =0.0)
+    recorded_time = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return str(self.RH)
+class Pressure(models.Model):
+    BP= models.FloatField(default=0.0)
+    change = models.FloatField(default =0.0)
+    recorded_time = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return str(self.BP)

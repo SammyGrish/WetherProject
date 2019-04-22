@@ -51,20 +51,22 @@
                     <p style="font-size:small">Last updated: {{ temp.recorded_time }}</p>
                     <p style="font-size:small">{{ tcount }} readings since {{ tfirst }}</p>
 </div>
-
-
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 2 (middle) -->
                 <div class="weather-block rounded">
                     <p class="weather-heading">Humidity</p>
-                    <p class="weather-item">data.humidity</p>
+                    <p class ="weather-item">humidity</p>
+                    <p style="font-size:small">Last updated: {{ humidity.recorded_time }}</p>
+                    <p style="font-size:small">{{ hcount }} readings since {{ hfirst }}</p>
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 3 (right) -->
                 <div class="weather-block rounded">
-                    <p class="weather-heading">Time</p>
-                    <p class="weather-item">data.time</p>
+                    <p class="weather-heading">Barometric Pressure</p>
+                    <p class="weather-item">pressure</p>
+                    <p style="font-size:small">Last updated: {{ pressure.recorded_time }}</p>
+                    <p style="font-size:small">{{ pcount }} readings since {{ pfirst }}</p>
                 </div>
             </div>
         </div>
