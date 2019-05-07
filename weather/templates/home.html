@@ -48,15 +48,18 @@
                 <div class="weather-block rounded">
                     <p class="weather-heading">Temperature</p>
                     <p class="weather-item">{{ temp.fahrenheit|floatformat:1 }}&deg;F <span class="weather-sub">{{ temp.celesius|floatformat:1 }}&deg;C</span></p>
+                    <p class="weather-item">The highest tepmerature from some time ago to now is {{tmax|floatformat:1}}</p>
+                    <p class="weather-item">The lowest is {{tmin|floatformat:1}}</p>
                     <p style="font-size:small">Last updated: {{ temp.recorded_time }}</p>
                     <p style="font-size:small">{{ tcount }} readings since {{ tfirst }}</p>
-</div>
                 </div>
             </div>
             <div class="col-md-4"> <!-- block 2 (middle) -->
                 <div class="weather-block rounded">
                     <p class="weather-heading">Humidity</p>
                     <p class ="weather-item">{{humidity.RH|floatformat:1}}</p>
+                    <p class="weather-item">The highest relative humidity from some time ago to now is {{hmax|floatformat:1}}</p>
+                    <p class="weather-item">The lowest is {{hmin|floatformat:1}}</p>
                     <p style="font-size:small">Last updated: {{ humidity.recorded_time }}</p>
                     <p style="font-size:small">{{ hcount }} readings since {{ hfirst }}</p>
                 </div>
@@ -65,6 +68,8 @@
                 <div class="weather-block rounded">
                     <p class="weather-heading">Barometric Pressure</p>
                     <p class="weather-item">{{pressure.BP|floatformat:1}}</p>
+                    <p class="weather-item">The highest Pressure from some time ago to now is {{pmax|floatformat:1}}</p>
+                    <p class="weather-item">The lowest is {{pmin|floatformat:1}}</p>
                     <p style="font-size:small">Last updated: {{ pressure.recorded_time }}</p>
                     <p style="font-size:small">{{ pcount }} readings since {{ pfirst }}</p>
                 </div>
