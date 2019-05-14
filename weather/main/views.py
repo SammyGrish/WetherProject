@@ -1,9 +1,42 @@
 from django.shortcuts import render
-from api.models import Temperature
-from api.models import Humidity
-from api.models import Pressure
+from api.models import Temperature,Humidity,Pressure
 from datetime import datetime, timedelta
-from django.db.models import Max, Min
+from django.db.models import Max, Min, F
+from chartjs.views.lines import BaseLineChartView
+days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+class LineChartView(BaseLineChartView):
+    labels = []
+    max_list = []
+    min_list = []
+    def set_minmax(self, index, item):
+        if item > self.max_list[index]:
+            self.max_list[item]=item
+        if item < self.min_list[index]:
+            self.min_list[item]=item
+            
+    def last_seven_days(self):
+        now = datetime.now()
+        seven_days_ago = now-timedelta(days=7)
+        datas = Temperature.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('celesius'))
+        for data in datas:
+            weekday = datetime.weekday(data.recorded_time)
+            if days[weekday] not in self.labels:
+                self.labels.append(days[weekday])
+        self.max_list = [-100 for i in range(len(self.labels))]
+        self.min_list = [9999 for i in range(len(self.labels))]
+        for data in datas:
+            weekday = datetime.weekday(data.recorded_time)
+            idx = self.labels.index(days[weekday])
+            self.set_minmax(idx, data.value)
+    def get_providers(self):
+        return['Max','Min']
+    def get_labels(self):
+        return self.labels
+    def get_data(self):
+        self.last_seven_days
+        
+        return[self.max_list,self.min_list]
 
 def home(request):
     now = datetime.now()

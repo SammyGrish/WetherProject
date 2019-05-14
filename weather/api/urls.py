@@ -9,4 +9,5 @@ urlpatterns = [
     path('H/<int:pk>/', views.HumidityDetail.as_view()),
     path('P', views.PressureList.as_view()),
     path('P/<int:pk>/', views.PressureDetail.as_view()),
+    
 ]
