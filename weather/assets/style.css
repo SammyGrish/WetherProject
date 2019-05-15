@@ -69,7 +69,7 @@ p {
   background-color: #e45812
 }
 .intro {
-  background: url('Belize-laughing-bird-caye-island.jpg') no-repeat;
+  background: url('http://www.blackboxnews.com/baxter.jpg') no-repeat;
   /*center right no-repeat fixed; */
   background-position: right center;
   width: 100%;
@@ -96,8 +96,8 @@ p {
   margin-bottom: 0;
 }
 #about {
-  background-color: #345995;
-  color: #e7ecef;
+  background-color: #fff;
+  color: #fff;
 }
 
 .weather {

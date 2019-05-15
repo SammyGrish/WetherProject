@@ -16,9 +16,15 @@ class LineChartView(BaseLineChartView):
             self.min_list[item]=item
             
     def last_seven_days(self):
+        self.type = self.kwargs.get('type')
         now = datetime.now()
         seven_days_ago = now-timedelta(days=7)
-        datas = Temperature.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('celesius'))
+        if self.type== 'rh':
+            datas= Humidity.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('RH'))
+        elif self.type == 'bp':
+            datas = Pressure.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('BP'))
+        else:
+            datas = Temperature.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('celesius'))
         for data in datas:
             weekday = datetime.weekday(data.recorded_time)
             if days[weekday] not in self.labels:
