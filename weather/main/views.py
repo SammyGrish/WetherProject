@@ -6,6 +6,7 @@ from chartjs.views.lines import BaseLineChartView
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 class LineChartView(BaseLineChartView):
+    type = ''
     labels = []
     max_list = []
     min_list = []
@@ -25,6 +26,8 @@ class LineChartView(BaseLineChartView):
             datas = Pressure.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('BP'))
         else:
             datas = Temperature.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('celesius'))
+        print(str(data.recorded_time)+'='+str(weekday)+' '+ days[weekday])
+        print (datas)
         for data in datas:
             weekday = datetime.weekday(data.recorded_time)
             if days[weekday] not in self.labels:
