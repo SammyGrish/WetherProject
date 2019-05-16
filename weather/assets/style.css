@@ -66,7 +66,7 @@ p {
   height: 100%;
   display: block;
   z-index: 0;
-  background-color: #e45812
+  background-color: #fff
 }
 .intro {
   background: url('http://www.blackboxnews.com/baxter.jpg') no-repeat;
@@ -90,7 +90,7 @@ p {
   font-size: 40px;
 }
 .intro .slogan p {
-  color: #e7ecef;
+  color: #fff;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 0;

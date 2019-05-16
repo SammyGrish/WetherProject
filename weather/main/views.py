@@ -4,17 +4,20 @@ from datetime import datetime, timedelta
 from django.db.models import Max, Min, F
 from chartjs.views.lines import BaseLineChartView
 days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-
+def c2f(celesius):
+        return((celesius * 9/5) + 32)
 class LineChartView(BaseLineChartView):
     type = ''
     labels = []
     max_list = []
-    min_list = []
+    min_list = [] 
     def set_minmax(self, index, item):
+        if self.type == 'tmep':
+            item = c2f(item)
         if item > self.max_list[index]:
-            self.max_list[item]=item
+            self.max_list[index]=item
         if item < self.min_list[index]:
-            self.min_list[item]=item
+            self.min_list[index]=item
             
     def last_seven_days(self):
         self.type = self.kwargs.get('type')
@@ -26,7 +29,7 @@ class LineChartView(BaseLineChartView):
             datas = Pressure.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('BP'))
         else:
             datas = Temperature.objects.order_by('recorded_time').filter(recorded_time__range=(seven_days_ago,now)).annotate(value=F('celesius'))
-        print(str(data.recorded_time)+'='+str(weekday)+' '+ days[weekday])
+        #print(str(data.recorded_time)+'='+str(weekday)+' '+ days[weekday])
         print (datas)
         for data in datas:
             weekday = datetime.weekday(data.recorded_time)
@@ -43,8 +46,7 @@ class LineChartView(BaseLineChartView):
     def get_labels(self):
         return self.labels
     def get_data(self):
-        self.last_seven_days
-        
+        self.last_seven_days()
         return[self.max_list,self.min_list]
 
 def home(request):
